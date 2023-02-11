@@ -1,0 +1,60 @@
+﻿<Window x:Class="LoppushokSpeed.Windows.ProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LoppushokSpeed.Windows"
+        mc:Ignorable="d"
+        Title="ProductWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Артикул"/>
+        <TextBox x:Name="tbArticle" Grid.Column="1" Text="{Binding Product.Article}"/>
+        <TextBlock Grid.Row="1" Text="Наименование"/>
+        <TextBox x:Name="tbName" Grid.Row="1" Grid.Column="1" Text="{Binding Product.Name}"/>
+        <TextBlock Grid.Row="2" Text="Тип продукта"/>
+        <ComboBox Name="cbType"
+                  SelectedItem="{Binding Product.ProductType}"
+                    Grid.Row="2" Grid.Column="1" ItemsSource="{Binding ProductTypes}"
+                    DisplayMemberPath="Name"/>
+        <TextBlock Grid.Row="3" Text="Кол-во человек"/>
+        <TextBox x:Name="tbManForProduct" Grid.Row="3" Grid.Column="1" Text="{Binding Product.ManForProduct}"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Text="Номер цеха"/>
+        <TextBox x:Name="tbWorkshop" Grid.Row="0" Grid.Column="3" Text="{Binding Product.WorkshopNumber}"/>
+        <TextBlock Grid.Row="1" Grid.Column="2" Text="Мин стоимость"/>
+        <TextBox x:Name="tbPrice" Grid.Row="1" Grid.Column="3" Text="{Binding Product.MinPriceForAgent}"/>
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="Описание"/>
+        <TextBox Grid.Row="2" Grid.Column="3" 
+                 Grid.RowSpan="2"
+                 AcceptsReturn="True"
+                 Text="{Binding Product.Description}"/>
+
+        <Image Name="imgProduct"
+            Grid.Row="4" Grid.Column="3" Source="{Binding Product.Image}" />
+
+        <Button x:Name="btnChangeImage" 
+                Grid.Row="5" Grid.Column="1"
+                Margin="0"
+                Content="Выбрать фото"
+                Click="btnChangeImage_Click"/>
+
+        <Button x:Name="btnSave" Content="Сохранить" Grid.Column="1" Grid.Row="6" Click="btnSave_Click"/>
+
+
+
+    </Grid>
+</Window>

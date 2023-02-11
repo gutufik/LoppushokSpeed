@@ -36,8 +36,9 @@
           <Property Name="ImagePath" Type="nvarchar" MaxLength="50" />
           <Property Name="ProductTypeId" Type="int" />
           <Property Name="ManForProduct" Type="int" />
-          <Property Name="WarehouseNumber" Type="int" />
+          <Property Name="WorkshopNumber" Type="int" />
           <Property Name="Image" Type="varbinary(max)" />
+          <Property Name="Description" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ProductMaterial">
           <Key>
@@ -229,8 +230,9 @@
           <Property Name="ImagePath" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProductTypeId" Type="Int32" />
           <Property Name="ManForProduct" Type="Int32" />
-          <Property Name="WarehouseNumber" Type="Int32" />
+          <Property Name="WorkshopNumber" Type="Int32" />
           <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductType" Relationship="LopushokSpeendRunModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
           <NavigationProperty Name="ProductMaterials" Relationship="LopushokSpeendRunModel.FK_ProductMaterial_Product" FromRole="Product" ToRole="ProductMaterial" />
         </EntityType>
@@ -331,7 +333,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -362,8 +364,9 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="LopushokSpeendRunModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="WarehouseNumber" ColumnName="WarehouseNumber" />
+                <ScalarProperty Name="WorkshopNumber" ColumnName="WorkshopNumber" />
                 <ScalarProperty Name="ManForProduct" ColumnName="ManForProduct" />
                 <ScalarProperty Name="ProductTypeId" ColumnName="ProductTypeId" />
                 <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />

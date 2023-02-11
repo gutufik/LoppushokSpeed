@@ -39,8 +39,8 @@ namespace LoppushokSpeed.Pages
             {
                 {"Наименование по убыванию", x => x.Name },
                 {"Наименование по возрастанию", x => x.Name },
-                {"Номер цеха по убыванию", x => x.WarehouseNumber },
-                {"Номер цеха по возрастанию", x => x.WarehouseNumber },
+                {"Номер цеха по убыванию", x => x.WorkshopNumber },
+                {"Номер цеха по возрастанию", x => x.WorkshopNumber },
                 {"Стоимость по убыванию", x => x.MinPriceForAgent },
                 {"Стоимость по возрастанию", x => x.MinPriceForAgent },
             };
@@ -50,13 +50,24 @@ namespace LoppushokSpeed.Pages
                     product.Image = File.ReadAllBytes(@"C:\Users\201913\Desktop"+ product.ImagePath);
                 DataAccess.SaveProduct(product);
             }
+            DataAccess.RefreshList += DataAccess_RefreshList;
 
 
             DataContext = this;
         }
+
+        private void DataAccess_RefreshList()
+        {
+            Products = DataAccess.GetProducts();
+            lvProducts.ItemsSource = Products;
+            lvProducts.Items.Refresh();
+            page = 1;
+            Filter();
+        }
+
         private void SetPageNumbers()
         {
-            var pageCount = Math.Round((double)ProductsForFilter.Count() / 10);
+            var pageCount = ProductsForFilter.Count() % 20 == 0? ProductsForFilter.Count() / 20: ProductsForFilter.Count() / 20 + 1;
             spPageNumbers.Children.Clear();
 
             spPageNumbers.Children.Add(new TextBlock { Text = $"<", });
@@ -74,6 +85,7 @@ namespace LoppushokSpeed.Pages
         private void PageNumberClick(object sender, MouseButtonEventArgs e)
         {
             var text = (sender as TextBlock).Text;
+            var pageCount = ProductsForFilter.Count() % 20 == 0 ? ProductsForFilter.Count() / 20 : ProductsForFilter.Count() / 20 + 1;
             if (text == "<")
             {
                 if(page > 1)
@@ -81,7 +93,7 @@ namespace LoppushokSpeed.Pages
             }
             else if (text == ">")
             {
-                if(page < Math.Round((double)ProductsForFilter.Count() / 10))
+                if(page < pageCount)
                     page++;
             }
             else
@@ -107,17 +119,12 @@ namespace LoppushokSpeed.Pages
                     ProductsForFilter.Reverse();
             }
 
-
-            lvProducts.ItemsSource = ProductsForFilter.Skip((page - 1) * 10).Take(10).ToList();
+            lvProducts.ItemsSource = ProductsForFilter.Skip((page - 1) * 20).Take(20).ToList();
             lvProducts.Items.Refresh();
 
             SetPageNumbers();
         }
 
-        private void Pagination()
-        {
-
-        }
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -132,6 +139,32 @@ namespace LoppushokSpeed.Pages
         private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Filter();
+        }
+
+        private void btnAddProduct_Click(object sender, RoutedEventArgs e)
+        {
+            (new Windows.ProductWindow(new Product())).ShowDialog();
+        }
+
+        private void lvProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            btnDeleteProduct.IsEnabled = (lvProducts.SelectedItem as Product) != null;
+        }
+
+        private void lvProducts_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var product = lvProducts.SelectedItem as Product;
+            if (product != null)
+                (new Windows.ProductWindow(product)).ShowDialog();
+        }
+
+        private void btnDeleteProduct_Click(object sender, RoutedEventArgs e)
+        {
+            var product = lvProducts.SelectedItem as Product;
+            if (MessageBox.Show("","Удалить продукт?",MessageBoxButton.OKCancel) == MessageBoxResult.OK )
+            {
+                DataAccess.DeleteProduct(product);
+            }
         }
     }
 }

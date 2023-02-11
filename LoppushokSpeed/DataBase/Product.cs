@@ -27,8 +27,9 @@ namespace LoppushokSpeed.DataBase
         public string ImagePath { get; set; }
         public Nullable<int> ProductTypeId { get; set; }
         public Nullable<int> ManForProduct { get; set; }
-        public Nullable<int> WarehouseNumber { get; set; }
+        public Nullable<int> WorkshopNumber { get; set; }
         public byte[] Image { get; set; }
+        public string Description { get; set; }
     
         public virtual ProductType ProductType { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

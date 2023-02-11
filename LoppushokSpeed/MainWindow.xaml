@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LoppushokSpeed"
         FontFamily="Gabriola"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" MinWidth="1200">
+        Title="MainWindow" Height="700" MinWidth="1200">
     <Grid>
         <Frame x:Name="frmMain" NavigationUIVisibility="Hidden"/>
 

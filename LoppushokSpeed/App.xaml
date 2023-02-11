@@ -6,15 +6,15 @@
     <Application.Resources>
         <Style TargetType="TextBox">
             <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Margin" Value="20"/>
         </Style>
         <Style TargetType="ComboBox">
             <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Margin" Value="20"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Margin" Value="20"/>
             <Setter Property="Background" Value="#00CC76"/>
         </Style>
         <Style TargetType="ListView">

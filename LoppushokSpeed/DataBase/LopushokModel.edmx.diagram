@@ -7,7 +7,7 @@
       <Diagram DiagramId="b8975adc653a4575be09e95bfd8d22d3" Name="Diagram1">
         <EntityTypeShape EntityType="LopushokSpeendRunModel.Material" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="LopushokSpeendRunModel.MaterialType" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="LopushokSpeendRunModel.Product" Width="1.5" PointX="3" PointY="9" />
+        <EntityTypeShape EntityType="LopushokSpeendRunModel.Product" Width="1.5" PointX="3" PointY="8.875" />
         <EntityTypeShape EntityType="LopushokSpeendRunModel.ProductMaterial" Width="1.5" PointX="5.25" PointY="1.5" />
         <EntityTypeShape EntityType="LopushokSpeendRunModel.ProductType" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="LopushokSpeendRunModel.sysdiagram" Width="1.5" PointX="2.75" PointY="5.75" />
